@@ -6,11 +6,19 @@
 }
 
 @font-face {
+  font-family: Montserrat;
+  src: url( '/fonts/montserrat/Montserrat-VariableFont_wght.ttf' );
+}
+
+
+@font-face {
   font-family: PlusJakartaSans;
   src: url( '/fonts/plus-jakarta-sans/PlusJakartaSans-VariableFont_wght.ttf' )
 }
 
 @theme {
   --font-montserratAlternate: "MontserratAlternate";
+  --font-montserrat: "Montserrat";
   --font-plusJakartaSans: "PlusJakartaSans";
+  --shadow-around: 0 0 15px rgba(0, 0, 0, 0.15)
 }
