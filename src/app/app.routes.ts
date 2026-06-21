@@ -16,7 +16,16 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import( './shared/layouts/main-layout/main-layout' ),
-    loadChildren: () => import( './pages/inventory/inventory.routes' ),
+    children: [
+      {
+        path: '',
+        loadChildren: () => import( './pages/inventory/inventory.routes' ),
+      },
+      {
+        path: 'admin',
+        loadComponent: () => import( './pages/admin/dashboard/dashboard' )
+      }
+    ]
   },
 
   {

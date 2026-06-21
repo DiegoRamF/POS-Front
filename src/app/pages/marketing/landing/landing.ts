@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'landing',
-  imports: [],
+  imports: [ ],
   templateUrl: './landing.html',
 })
 export default class Landing {}
