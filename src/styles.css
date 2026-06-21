@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: MontserratAlternate;
+  src: url( '/fonts/montserrat/MontserratAlternates-Regular.ttf');
+}
+
+@font-face {
+  font-family: PlusJakartaSans;
+  src: url( '/fonts/plus-jakarta-sans/PlusJakartaSans-VariableFont_wght.ttf' )
+}
+
+@theme {
+  --font-montserratAlternate: "MontserratAlternate";
+  --font-plusJakartaSans: "PlusJakartaSans";
+}
