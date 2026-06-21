@@ -1,5 +1,43 @@
-<section class="px-0 md:px-12 lg:px-48 max-w-screen-2xl w-full mx-auto">
+<section class="px-4 md:px-12 lg:px-16 max-w-screen-2xl w-full mx-auto">
+
   <top-bar />
-  <p>Hola</p>
+
+  <div class="grid gap-6 grid-cols-1 xl:grid-cols-2 md:px-12 py-20 bg-gray-100 rounded-4xl mt-4">
+
+    <div class="font-black font-montserrat text-[44px]/tight md:text-[70px]/tight ">
+      <p>CONTROLA TU</p>
+      <p class="text-blue-500">BODEGA SIN</p>
+      <p class="text-blue-400">ESTAR</p>
+      <p class="text-blue-300">PRESENTE.</p>
+    </div>
+
+    <div class="xl:row-span-2 flex items-center justify-center">
+      <img src="/img/lfndtoirttvx.jpg" class="border-20 border-white rounded-2xl shadow-xl w-full h-auto">
+    </div>
+
+    <div class="items-start text-gray-700">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, dolores optio, quos est assumenda quod placeat cupiditate magni beatae sint itaque! Enim et impedit necessitatibus laborum nihil voluptates repellat maxime!
+    </div>
+
+    <div class="flex xl:col-span-2 text-gray-700 pt-4 justify-center gap-6 sm:gap-12 md:gap-32 flex-wrap mt-4">
+      <a
+        routerLink="/auth"
+        class="bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserratAlternate text-center shadow-around
+        transition duration-500 ease-in-out
+        hover:bg-blue-900 hover:scale-103">
+        Empezar Gratis
+      </a>
+      <a
+        (click)="scrollToPrices()"
+        class="text-black px-8 py-4 rounded-full font-extrabold font-montserratAlternate text-center shadow-around cursor-pointer
+        transition duration-500 ease-in-out
+        hover:scale-103">
+        Ver Precios
+      </a>
+    </div>
+
+
+
+  </div>
 
 </section>
