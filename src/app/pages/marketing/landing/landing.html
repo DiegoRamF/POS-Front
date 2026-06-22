@@ -81,51 +81,74 @@
 
   </div>
 
-  <div id="precios" class="grid gap-6 grid-cols-1 xl:grid-cols-2 md:px-12 py-20 bg-gray-100 rounded-4xl my-20 font-montserrat">
-    <div class="flex col-span-2 justify-center font-bold text-[30px]">Planes disponibles</div>
-    <div class="flex col-span-2 justify-center text-gray-700 mb-8">Comienza gratis hoy mismo y mejora tu plan cuando tu negocio lo necesite.</div>
+  <div id="precios" class="max-w-5xl mx-auto py-20 bg-gray-100 rounded-4xl my-20 font-montserrat px-6 md:px-12">
 
-    <div class="bg-white px-12 py-8 mx-30 rounded-4xl shadow-around">
-      <h1 class="text-xl font-bold">Plan Básico</h1>
-      <p class="mb-4 text-gray-500">Para negocios de un solo dueño.</p>
-      <p class="text-center mb-4"><span class="text-[44px] font-bold">S/0</span><span class="text-gray-400 font-medium"> / mes</span></p>
-      <div class="leading-loose mb-8">
-        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> 1 Usuario (Dueño)</p>
-        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Inventario web básico</p>
-        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Caja básica</p>
-      </div>
-
-      <a
-        routerLink="/auth"
-        class="text-black px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center shadow-around
-        transition duration-500 ease-in-out
-        hover:bg-gray-200 hover:scale-103">
-        Empezar Gratis
-      </a>
+    <div class="text-center mb-12">
+      <div class="font-bold text-[30px] mb-2">Planes disponibles</div>
+      <div class="text-gray-700">Comienza gratis hoy mismo y mejora tu plan cuando tu negocio lo necesite.</div>
     </div>
 
-    <div class="bg-white px-12 py-8 mx-30 rounded-4xl border-2 border-blue-800 shadow-around">
-      <div class="flex justify-center top-0 -mt-12">
-        <span class="bg-blue-800 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">Plan Recomendado</span>
-      </div>
-      <h1 class="text-xl font-bold">Plan Pro</h1>
-      <p class="mb-4 text-gray-500">Control total incluso fuera del negocio.</p>
-      <p class="text-center mb-4"><span class="text-[44px] font-bold">S/(Precio escogido)</span><span class="text-gray-400 font-medium"> / mes</span></p>
-      <div class="leading-loose mb-8">
-        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Todo el plan básico</p>
-        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Multiples roles</p>
-        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Auditoría estricta</p>
-        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> <span class="text-blue-800 font-medium"> Reportes de cierre por WhatsApp</span></p>
+    <div class="grid gap-8 grid-cols-1 md:grid-cols-2 items-stretch">
+      <div class="bg-white px-8 py-10 rounded-4xl shadow-md flex flex-col">
+        <h1 class="text-xl font-bold">Plan Básico</h1>
+        <p class="mb-6 text-gray-500">Para negocios de un solo dueño.</p>
+        <p class="text-center mb-8"><span class="text-[44px] font-bold">S/0</span><span class="text-gray-400 font-medium"> / mes</span></p>
+        <div class="leading-loose mb-8 grow">
+          <p class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">✓</span> 1 Usuario (Dueño)
+          </p>
+          <p class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">✓</span> Inventario web básico
+          </p>
+          <p class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">✓</span> Caja básica
+          </p>
+        </div>
+
+        <a
+          routerLink="/auth"
+          class="text-black px-8 py-4 rounded-full font-extrabold font-montserrat flex justify-center border-2 border-gray-100 shadow-around
+            transition duration-300 ease-in-out
+            hover:bg-gray-50 hover:scale-103 mt-auto">
+          Empezar Gratis
+        </a>
       </div>
 
-      <a
-        routerLink="/auth"
-        class="bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center shadow-around
-        transition duration-500 ease-in-out
-        hover:bg-blue-900 hover:scale-103">
-        Actualizar a Pro
-      </a>
+
+      <div class="relative bg-white px-8 py-10 rounded-4xl border-2 border-blue-800 shadow-xl flex flex-col mt-8 md:mt-0">
+        <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-blue-800 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wide whitespace-nowrap">
+          <span class="bg-blue-800 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">Plan Recomendado</span>
+        </div>
+
+        <h1 class="text-xl font-bold">Plan Pro</h1>
+        <p class="mb-6 text-gray-500">Control total incluso fuera del negocio.</p>
+        <p class="text-center mb-8"><span class="text-[44px] font-bold leading-tight">S/(Precio escogido)</span><span class="text-gray-400 font-medium"> / mes</span></p>
+        <div class="leading-loose mb-8 grow">
+          <p class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">✓</span> Todo el plan básico
+          </p>
+          <p class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">✓</span> Multiples roles
+          </p>
+          <p class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">✓</span> Auditoría estricta
+          </p>
+          <p class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-1">✓</span> <span class="text-blue-800 font-bold"> Reportes de cierre por WhatsApp</span>
+          </p>
+        </div>
+
+        <a
+          routerLink="/auth"
+          class="bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserrat flex justify-center
+            transition duration-300 ease-in-out
+            hover:bg-blue-900 hover:scale-103 mt-auto shadow-around">
+          Actualizar a Pro
+        </a>
+      </div>
     </div>
+
   </div>
+
 
 </section>
