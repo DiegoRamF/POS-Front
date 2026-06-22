@@ -81,7 +81,7 @@
 
   </div>
 
-  <div id="precios" class="grid gap-6 grid-cols-1 xl:grid-cols-2 md:px-12 py-20 bg-gray-100 rounded-4xl mt-20 font-montserrat">
+  <div id="precios" class="grid gap-6 grid-cols-1 xl:grid-cols-2 md:px-12 py-20 bg-gray-100 rounded-4xl my-20 font-montserrat">
     <div class="flex col-span-2 justify-center font-bold text-[30px]">Planes disponibles</div>
     <div class="flex col-span-2 justify-center text-gray-700 mb-8">Comienza gratis hoy mismo y mejora tu plan cuando tu negocio lo necesite.</div>
 
@@ -102,10 +102,30 @@
         hover:bg-gray-200 hover:scale-103">
         Empezar Gratis
       </a>
-
     </div>
 
-    <div class="mx-30">Precio 2</div>
+    <div class="bg-white px-12 py-8 mx-30 rounded-4xl border-2 border-blue-800 shadow-around">
+      <div class="flex justify-center top-0 -mt-12">
+        <span class="bg-blue-800 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">Plan Recomendado</span>
+      </div>
+      <h1 class="text-xl font-bold">Plan Pro</h1>
+      <p class="mb-4 text-gray-500">Control total incluso fuera del negocio.</p>
+      <p class="text-center mb-4"><span class="text-[44px] font-bold">S/(Precio escogido)</span><span class="text-gray-400 font-medium"> / mes</span></p>
+      <div class="leading-loose mb-8">
+        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Todo el plan básico</p>
+        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Multiples roles</p>
+        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Auditoría estricta</p>
+        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> <span class="text-blue-800 font-medium"> Reportes de cierre por WhatsApp</span></p>
+      </div>
+
+      <a
+        routerLink="/auth"
+        class="bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center shadow-around
+        transition duration-500 ease-in-out
+        hover:bg-blue-900 hover:scale-103">
+        Actualizar a Pro
+      </a>
+    </div>
   </div>
 
 </section>
