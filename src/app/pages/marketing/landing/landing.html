@@ -31,7 +31,7 @@
         (click)="scrollToPrices()"
         class="text-black px-8 py-4 rounded-full font-extrabold font-montserratAlternate text-center shadow-around cursor-pointer
         transition duration-500 ease-in-out
-        hover:scale-103">
+        hover:bg-gray-200 hover:scale-103">
         Ver Precios
       </a>
     </div>
@@ -81,11 +81,31 @@
 
   </div>
 
-  <div id="precios" class="grid gap-6 grid-cols-1 xl:grid-cols-2 md:px-12 py-20 bg-gray-100 rounded-4xl mt-20">
-    <div class="flex col-span-2 justify-center">HOLA</div>
-    <div class="flex col-span-2 justify-center">HOLA</div>
-    <div class="flex justify-center">Precio 1</div>
-    <div class="flex justify-center">Precio 2</div>
+  <div id="precios" class="grid gap-6 grid-cols-1 xl:grid-cols-2 md:px-12 py-20 bg-gray-100 rounded-4xl mt-20 font-montserrat">
+    <div class="flex col-span-2 justify-center font-bold text-[30px]">Planes disponibles</div>
+    <div class="flex col-span-2 justify-center text-gray-700 mb-8">Comienza gratis hoy mismo y mejora tu plan cuando tu negocio lo necesite.</div>
+
+    <div class="bg-white px-12 py-8 mx-30 rounded-4xl shadow-around">
+      <h1 class="text-xl font-bold">Plan Básico</h1>
+      <p class="mb-4 text-gray-500">Para negocios de un solo dueño.</p>
+      <p class="text-center mb-4"><span class="text-[44px] font-bold">S/0</span><span class="text-gray-400 font-medium"> / mes</span></p>
+      <div class="leading-loose mb-8">
+        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> 1 Usuario (Dueño)</p>
+        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Inventario web básico</p>
+        <p><span class="bg-blue-200 text-blue-800 rounded-full p-1 font-bold">✓</span> Caja básica</p>
+      </div>
+
+      <a
+        routerLink="/auth"
+        class="text-black px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center shadow-around
+        transition duration-500 ease-in-out
+        hover:bg-gray-200 hover:scale-103">
+        Empezar Gratis
+      </a>
+
+    </div>
+
+    <div class="mx-30">Precio 2</div>
   </div>
 
 </section>
