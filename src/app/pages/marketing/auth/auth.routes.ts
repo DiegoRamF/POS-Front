@@ -2,8 +2,12 @@ import { Routes } from '@angular/router';
 
 export const authRoutes: Routes = [
   {
-    path: 'auth',
-    loadComponent: () => import( './login/login' ),
+    path: 'login',
+    loadComponent: () => import( './login-page/login-page' ),
+  },
+  {
+    path: 'register',
+    loadComponent: () => import( './register-page/register-page' )
   },
   {
     path: 'select-role',

@@ -4,11 +4,11 @@ export const routes: Routes = [
 
   {
     path: '',
-    loadComponent: () => import( './pages/marketing/landing/landing' )
+    loadComponent: () => import( './pages/marketing/landing-page/landing-page' )
   },
 
   {
-    path: '',
+    path: 'auth',
     loadComponent: () => import( './shared/layouts/auth-layout/auth-layout' ),
     loadChildren: () => import( './pages/marketing/auth/auth.routes' ),
   },

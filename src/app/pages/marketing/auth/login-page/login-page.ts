@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'login',
   imports: [],
-  templateUrl: './login.html',
+  templateUrl: './login-page.html',
 })
 export default class Login {}

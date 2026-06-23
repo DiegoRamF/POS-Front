@@ -8,7 +8,7 @@ import PricingSection from "../components/pricing-section/pricing-section";
 
 @Component({
   selector: 'landing',
-  imports: [RouterLink, TopBar, HeroSection, FeaturesSection, PricingSection],
-  templateUrl: './landing.html',
+  imports: [ TopBar, HeroSection, FeaturesSection, PricingSection ],
+  templateUrl: './landing-page.html',
 })
-export default class Landing {};
+export default class LandingPage {};

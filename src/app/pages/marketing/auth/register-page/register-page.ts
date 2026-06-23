@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'register',
   imports: [],
-  templateUrl: './register.html',
+  templateUrl: './register-page.html',
 })
 export default class Register {}
