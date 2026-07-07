@@ -16,6 +16,7 @@ export default class RegisterPage {
   isLoading = signal( false );
   errorMessage = signal<string | null>( null );
   successMessage = signal<string | null>( null );
+  showPassword = signal( false );
 
   registerForm = this.fb.nonNullable.group({
     tenant_name: [ '', [ Validators.required ] ],
@@ -27,6 +28,12 @@ export default class RegisterPage {
   }, {
     validators: AuthValidators.passwordsMatch
   });
+
+
+
+  togglePasswordVisibility(): void {
+    this.showPassword.update( value => !value);
+  };
 
 
 
