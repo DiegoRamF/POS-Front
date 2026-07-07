@@ -17,67 +17,163 @@
 
     <form
       [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
       class="flex flex-col gap-5 font-montserrat"
     >
       <div>
-        <p class="font-bold text-sm ml-2">Nombre de tu negocio</p>
+        <p class="font-bold text-sm ml-2 transition-colors duration-300"
+           [class.text-red-600]="isFieldInvalid('tenant_name')">
+          Nombre de tu negocio
+        </p>
         <input
           type="text"
+          formControlName="tenant_name"
           placeholder="Ej. Bodega don lucho"
-          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
+          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+          [class.border-transparent]="!isFieldInvalid('tenant_name')"
+          [class.focus:border-blue-800]="!isFieldInvalid('tenant_name')"
+          [class.border-red-500]="isFieldInvalid('tenant_name')"
+          [class.focus:border-red-500]="isFieldInvalid('tenant_name')"
+          [class.bg-red-50]="isFieldInvalid('tenant_name')"
         >
+        @if (isFieldInvalid('tenant_name') && registerForm.get('tenant_name')?.errors?.['required']) {
+          <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El nombre del negocio es obligatorio.</p>
+        }
       </div>
 
       <div>
-        <p class="font-bold text-sm ml-2">Nombre y Apellido</p>
+        <p class="font-bold text-sm ml-2 transition-colors duration-300"
+           [class.text-red-600]="isFieldInvalid('full_name')">
+          Nombre y Apellido
+        </p>
         <input
           type="text"
+          formControlName="full_name"
           placeholder="Ej. Juan Pérez"
-          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
+          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+          [class.border-transparent]="!isFieldInvalid('full_name')"
+          [class.focus:border-blue-800]="!isFieldInvalid('full_name')"
+          [class.border-red-500]="isFieldInvalid('full_name')"
+          [class.focus:border-red-500]="isFieldInvalid('full_name')"
+          [class.bg-red-50]="isFieldInvalid('full_name')"
         >
+        @if (isFieldInvalid('full_name') && registerForm.get('full_name')?.errors?.['required']) {
+          <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Tu nombre completo es obligatorio.</p>
+        }
       </div>
 
       <div>
-        <p class="font-bold text-sm ml-2">Correo Electronico</p>
+        <p class="font-bold text-sm ml-2 transition-colors duration-300"
+           [class.text-red-600]="isFieldInvalid('email')">
+          Correo Electrónico
+        </p>
         <input
-          type="text"
+          type="email"
+          formControlName="email"
           placeholder="Ej. correo@ejemplo.com"
-          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
+          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+          [class.border-transparent]="!isFieldInvalid('email')"
+          [class.focus:border-blue-800]="!isFieldInvalid('email')"
+          [class.border-red-500]="isFieldInvalid('email')"
+          [class.focus:border-red-500]="isFieldInvalid('email')"
+          [class.bg-red-50]="isFieldInvalid('email')"
         >
+        @if (isFieldInvalid('email')) {
+          @if (registerForm.get('email')?.errors?.['required']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El correo electrónico es obligatorio.</p>
+          } @else if (registerForm.get('email')?.errors?.['invalidCustomEmail']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Por favor, introduce una estructura de correo válida.</p>
+          }
+        }
       </div>
 
       <div>
-        <p class="font-bold text-sm ml-2">Número de teléfono</p>
+        <p class="font-bold text-sm ml-2 transition-colors duration-300"
+           [class.text-red-600]="isFieldInvalid('phone')">
+          Número de teléfono
+        </p>
         <input
-          type="text"
-          placeholder=""
-          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
+          type="tel"
+          formControlName="phone"
+          placeholder="Ej. 999888777"
+          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+          [class.border-transparent]="!isFieldInvalid('phone')"
+          [class.focus:border-blue-800]="!isFieldInvalid('phone')"
+          [class.border-red-500]="isFieldInvalid('phone')"
+          [class.focus:border-red-500]="isFieldInvalid('phone')"
+          [class.bg-red-50]="isFieldInvalid('phone')"
         >
+        @if (isFieldInvalid('phone')) {
+          @if (registerForm.get('phone')?.errors?.['required']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El número telefónico es obligatorio.</p>
+          } @else if (registerForm.get('phone')?.errors?.['invalidPhone']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El teléfono debe constar de exactamente 9 dígitos numéricos.</p>
+          }
+        }
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <p class="font-bold text-sm ml-2">Contraseña</p>
+          <p class="font-bold text-sm ml-2 transition-colors duration-300"
+             [class.text-red-600]="isFieldInvalid('password')">
+            Contraseña
+          </p>
           <input
-            type="text"
-            placeholder=""
-            class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
+            type="password"
+            formControlName="password"
+            placeholder="Mín. 6 caracteres"
+            class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+            [class.border-transparent]="!isFieldInvalid('password')"
+            [class.focus:border-blue-800]="!isFieldInvalid('password')"
+            [class.border-red-500]="isFieldInvalid('password')"
+            [class.focus:border-red-500]="isFieldInvalid('password')"
+            [class.bg-red-50]="isFieldInvalid('password')"
           >
+          @if (isFieldInvalid('password')) {
+            @if (registerForm.get('password')?.errors?.['required']) {
+              <p class="text-red-500 text-xs ml-2 mt-1 font-medium">La contraseña es requerida.</p>
+            } @else if (registerForm.get('password')?.errors?.['weakPassword']) {
+              <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Debe tener al menos 6 caracteres, incluir una letra y un número.</p>
+            }
+          }
         </div>
 
         <div>
-          <p class="font-bold text-sm ml-2">Confirmar</p>
+          <p class="font-bold text-sm ml-2 transition-colors duration-300"
+             [class.text-red-600]="isFieldInvalid('confirmPassword') || registerForm.errors?.['passwordsMismatch'] && registerForm.get('confirmPassword')?.touched">
+            Confirmar
+          </p>
           <input
-            type="text"
+            type="password"
+            formControlName="confirmPassword"
             placeholder="Repite contraseña"
-            class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
+            class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+            [class.border-transparent]="!isFieldInvalid('confirmPassword') && !registerForm.errors?.['passwordsMismatch']"
+            [class.focus:border-blue-800]="!isFieldInvalid('confirmPassword') && !registerForm.errors?.['passwordsMismatch']"
+            [class.border-red-500]="isFieldInvalid('confirmPassword') || registerForm.errors?.['passwordsMismatch'] && registerForm.get('confirmPassword')?.touched"
+            [class.focus:border-red-500]="isFieldInvalid('confirmPassword') || registerForm.errors?.['passwordsMismatch'] && registerForm.get('confirmPassword')?.touched"
+            [class.bg-red-50]="isFieldInvalid('confirmPassword') || registerForm.errors?.['passwordsMismatch'] && registerForm.get('confirmPassword')?.touched"
           >
+          @if (registerForm.get('confirmPassword')?.touched && registerForm.errors?.['passwordsMismatch']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Las contraseñas ingresadas no coinciden.</p>
+          }
         </div>
       </div>
 
-      <button type="submit" class="mt-4 bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center shadow-around
-        transition duration-500 ease-in-out
-        hover:bg-blue-900 hover:scale-103">Comenzar gratis
+      <button
+        type="submit"
+        [disabled]="isLoading()"
+        class="mt-4 bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center items-center shadow-around transition duration-500 ease-in-out hover:bg-blue-900 hover:scale-103 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+      >
+        @if (isLoading()) {
+          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Procesando...
+        } @else {
+          Comenzar gratis
+        }
       </button>
 
       <p class="text-gray-700 text-center text-[13px]">
