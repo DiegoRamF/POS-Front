@@ -9,7 +9,16 @@
       <p class="font-extrabold font-montserrat text-3xl">CREAR CUENTA</p>
     </div>
 
-    <form class="flex flex-col gap-5 font-montserrat">
+    @if ( errorMessage() ) {
+      <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded-xl text-sm font-montserrat font-semibold">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    <form
+      [formGroup]="registerForm"
+      class="flex flex-col gap-5 font-montserrat"
+    >
       <div>
         <p class="font-bold text-sm ml-2">Nombre de tu negocio</p>
         <input
