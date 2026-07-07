@@ -6,29 +6,103 @@
   <div class="bg-white p-8 md:p-10 rounded-4xl shadow-around w-full max-w-lg">
 
     <div class="text-center mb-8">
-      <p class="font-extrabold font-montserrat text-3xl">CREAR CUENTA</p>
+      <p class="font-extrabold font-montserrat text-3xl">INICIAR SESIÓN</p>
     </div>
 
-    <form class="flex flex-col gap-5 font-montserrat">
+    @if ( errorMessage() ) {
+      <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded-xl text-sm font-montserrat font-semibold">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="flex flex-col gap-5 font-montserrat"
+    >
       <div>
-        <p class="font-bold text-sm ml-2">Correo Electronico</p>
+        <p class="font-bold text-sm ml-2 transition-colors duration-300"
+           [class.text-red-600]="isFieldInvalid('email')">
+          Correo Electrónico
+        </p>
         <input
-          type="text"
-          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
+          type="email"
+          formControlName="email"
+          placeholder="Ej. correo@ejemplo.com"
+          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+          [class.border-transparent]="!isFieldInvalid('email')"
+          [class.focus:border-blue-800]="!isFieldInvalid('email')"
+          [class.border-red-500]="isFieldInvalid('email')"
+          [class.focus:border-red-500]="isFieldInvalid('email')"
+          [class.bg-red-50]="isFieldInvalid('email')"
         >
+        @if (isFieldInvalid('email')) {
+          @if (loginForm.get('email')?.errors?.['required']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El correo electrónico es obligatorio.</p>
+          } @else if (loginForm.get('email')?.errors?.['invalidCustomEmail']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Por favor, introduce un correo válido.</p>
+          }
+        }
       </div>
 
       <div>
-        <p class="font-bold text-sm ml-2">Contraseña</p>
-        <input
-          type="text"
-          class="w-full px-5 py-3 bg-gray-100 rounded-4xl border-2 border-transparent focus:outline-none focus:border-blue-800 transition-colors duration-300"
-        >
+        <p class="font-bold text-sm ml-2 transition-colors duration-300"
+           [class.text-red-600]="isFieldInvalid('password')">
+          Contraseña
+        </p>
+
+        <div class="relative mt-1">
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Ingresa tu contraseña"
+            class="w-full pl-5 pr-12 py-3 bg-gray-100 rounded-4xl border-2 transition-colors duration-300 focus:outline-none"
+            [class.border-transparent]="!isFieldInvalid('password')"
+            [class.focus:border-blue-800]="!isFieldInvalid('password')"
+            [class.border-red-500]="isFieldInvalid('password')"
+            [class.focus:border-red-500]="isFieldInvalid('password')"
+            [class.bg-red-50]="isFieldInvalid('password')"
+          >
+
+          <button
+            type="button"
+            (click)="togglePasswordVisibility()"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-blue-800 transition-colors p-1 focus:outline-none"
+            title="Mostrar/Ocultar contraseña"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                 class="h-5 w-5 fill-current transition-all duration-300"
+                 [class.text-blue-800]="showPassword()"
+                 [class.text-gray-400]="!showPassword()">
+              <path d="M320 96C239.2 96 174.5 132.8 127.4 176.6C80.6 220.1 49.3 272 34.4 307.7C31.1 315.6 31.1 324.4 34.4 332.3C49.3 368 80.6 420 127.4 463.4C174.5 507.1 239.2 544 320 544C400.8 544 465.5 507.2 512.6 463.4C559.4 419.9 590.7 368 605.6 332.3C608.9 324.4 608.9 315.6 605.6 307.7C590.7 272 559.4 220 512.6 176.6C465.5 132.9 400.8 96 320 96zM176 320C176 240.5 240.5 176 320 176C399.5 176 464 240.5 464 320C464 399.5 399.5 464 320 464C240.5 464 176 399.5 176 320zM320 256C320 291.3 291.3 320 256 320C244.5 320 233.7 317 224.3 311.6C223.3 322.5 224.2 333.7 227.2 344.8C240.9 396 293.6 426.4 344.8 412.7C396 399 426.4 346.3 412.7 295.1C400.5 249.4 357.2 220.3 311.6 224.3C316.9 233.6 320 244.4 320 256z"/>
+            </svg>
+            @if (!showPassword()) {
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="w-full h-0.5 bg-gray-400 rotate-45 transform origin-center"></div>
+              </div>
+            }
+          </button>
+        </div>
+
+        @if (isFieldInvalid('password') && loginForm.get('password')?.errors?.['required']) {
+          <p class="text-red-500 text-xs ml-2 mt-1 font-medium">La contraseña es obligatoria.</p>
+        }
       </div>
 
-      <button type="submit" class="mt-4 bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center shadow-around
-        transition duration-500 ease-in-out
-        hover:bg-blue-900 hover:scale-103">Inicia Sesión
+      <button
+        type="submit"
+        [disabled]="isLoading()"
+        class="mt-4 bg-blue-800 text-white px-8 py-4 rounded-full font-extrabold font-montserratAlternate flex justify-center items-center shadow-around transition duration-500 ease-in-out hover:bg-blue-900 hover:scale-103 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+      >
+        @if (isLoading()) {
+          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Iniciando Sesión...
+        } @else {
+          Inicia Sesión
+        }
       </button>
 
       <p class="text-gray-700 text-center text-[13px]">
