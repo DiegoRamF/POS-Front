@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { AuthValidators } from '../utils/auth-utils';
 
 @Component({
@@ -11,6 +11,7 @@ import { AuthValidators } from '../utils/auth-utils';
 export default class RegisterPage {
 
   private fb = inject( FormBuilder );
+  private router = inject( Router );
 
   isLoading = signal( false );
   errorMessage = signal<string | null>( null );
@@ -27,8 +28,38 @@ export default class RegisterPage {
     validators: AuthValidators.passwordsMatch
   });
 
+
+
   isFieldInvalid( fieldName: string ): boolean {
     const control = this.registerForm.get( fieldName );
     return !!( control && control.invalid && ( control?.touched || control?.dirty ) );
   };
+
+
+
+  async onSubmit() {
+    if ( this.registerForm.invalid ) {
+      this.registerForm.markAllAsTouched();
+      return;
+    };
+
+    this.isLoading.set( true );
+    this.errorMessage.set( null );
+
+    const { confirmPassword, ...registerData } = this.registerForm.getRawValue();
+
+    console.log( 'Datos para enviar: ', registerData );
+
+    try {
+      await new Promise( ( resolve ) => setTimeout( resolve, 200) )
+
+      this.isLoading.set( false );
+
+      this.router.navigate([ 'auth/login' ]);
+    } catch (error) {
+      this.isLoading.set( false );
+      this.errorMessage.set( 'Ocurrio un error' )
+    }
+  };
+
 };
