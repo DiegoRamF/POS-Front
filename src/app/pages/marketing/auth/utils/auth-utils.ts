@@ -1,8 +1,9 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export const AUTH_REGEX = {
-  PHONE_PERU: /^\d{9}$/,
   EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  PHONE_PERU: /^\d{9}$/,
+  VALID_NAME: /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ][a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]{1,}$/,
   PASSWORD_STRONG: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
 };
 
@@ -21,6 +22,15 @@ export class AuthValidators {
       if( !control.value ) return null;
       const isValid = AUTH_REGEX.PHONE_PERU.test( control.value );
       return isValid ? null : { invalidPhone: true };
+    };
+  };
+
+  static nameFormat(): ValidatorFn {
+    return ( control: AbstractControl ): ValidationErrors | null => {
+      if( !control.value ) return null;
+      const value = control.value.trim();
+      const isValid = AUTH_REGEX.VALID_NAME.test( value );
+      return isValid ? null : { invalidName: true };
     };
   };
 

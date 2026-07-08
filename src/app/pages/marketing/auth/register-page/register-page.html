@@ -57,8 +57,12 @@
           [class.focus:border-red-500]="isFieldInvalid('full_name')"
           [class.bg-red-50]="isFieldInvalid('full_name')"
         >
-        @if (isFieldInvalid('full_name') && registerForm.get('full_name')?.errors?.['required']) {
-          <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Tu nombre completo es obligatorio.</p>
+        @if (isFieldInvalid('full_name')) {
+          @if (registerForm.get('full_name')?.errors?.['required']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Tu nombre completo es obligatorio.</p>
+          } @else if (registerForm.get('full_name')?.errors?.['invalidName']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El nombre debe tener al menos 2 letras y no contener números ni símbolos.</p>
+          }
         }
       </div>
 

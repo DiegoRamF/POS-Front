@@ -20,9 +20,9 @@ export default class RegisterPage {
 
   registerForm = this.fb.nonNullable.group({
     tenant_name: [ '', [ Validators.required ] ],
-    full_name: [ '', [ Validators.required] ],
-    email: [ '', [Validators.required, AuthValidators.emailFormat() ] ],
-    phone: [ '', [Validators.required, AuthValidators.phoneFormat() ] ],
+    full_name: [ '', [ Validators.required, AuthValidators.nameFormat() ] ],
+    email: [ '', [ Validators.required, AuthValidators.emailFormat() ] ],
+    phone: [ '', [ Validators.required, AuthValidators.phoneFormat() ] ],
     password: [ '', [ Validators.required, AuthValidators.strongPassword() ] ],
     confirmPassword: [ '', [ Validators.required ] ],
   }, {
@@ -58,7 +58,7 @@ export default class RegisterPage {
     console.log( 'Datos para enviar: ', registerData );
 
     try {
-      await new Promise( ( resolve ) => setTimeout( resolve, 200) )
+      await new Promise( ( resolve ) => setTimeout( resolve, 2000) )
 
       this.isLoading.set( false );
 
