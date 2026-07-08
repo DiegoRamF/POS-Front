@@ -19,7 +19,7 @@ export default class RegisterPage {
   showPassword = signal( false );
 
   registerForm = this.fb.nonNullable.group({
-    tenant_name: [ '', [ Validators.required ] ],
+    tenant_name: [ '', [ Validators.required, Validators.minLength( 3 ) ] ],
     full_name: [ '', [ Validators.required, AuthValidators.nameFormat() ] ],
     email: [ '', [ Validators.required, AuthValidators.emailFormat() ] ],
     phone: [ '', [ Validators.required, AuthValidators.phoneFormat() ] ],

@@ -36,8 +36,12 @@
           [class.focus:border-red-500]="isFieldInvalid('tenant_name')"
           [class.bg-red-50]="isFieldInvalid('tenant_name')"
         >
-        @if (isFieldInvalid('tenant_name') && registerForm.get('tenant_name')?.errors?.['required']) {
-          <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El nombre del negocio es obligatorio.</p>
+        @if (isFieldInvalid('tenant_name')) {
+          @if (registerForm.get('tenant_name')?.errors?.['required']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">El nombre del negocio es obligatorio.</p>
+          } @else if (registerForm.get('tenant_name')?.errors?.['minlength']) {
+            <p class="text-red-500 text-xs ml-2 mt-1 font-medium">Debe tener al menos 3 caracteres.</p>
+          }
         }
       </div>
 
