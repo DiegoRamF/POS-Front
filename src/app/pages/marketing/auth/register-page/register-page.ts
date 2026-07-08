@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
+
 import { AuthValidators } from '../utils/auth-utils';
 
 @Component({
@@ -67,6 +68,20 @@ export default class RegisterPage {
       this.isLoading.set( false );
       this.errorMessage.set( 'Ocurrio un error' )
     }
+  };
+
+
+
+  async onGoogleLogin() {
+    this.isLoading.set( true );
+    this.errorMessage.set( null );
+
+    try {
+
+    } catch (error: any) {
+      this.isLoading.set( false );
+      this.errorMessage.set( error.message || 'Error al conectar con Google' );
+    };
   };
 
 };

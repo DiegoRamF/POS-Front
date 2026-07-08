@@ -61,4 +61,18 @@ export default class LoginPage {
     }
   };
 
+
+
+  async onGoogleLogin() {
+    this.isLoading.set( true );
+    this.errorMessage.set( null );
+
+    try {
+
+    } catch (error: any) {
+      this.isLoading.set( false );
+      this.errorMessage.set( error.message || 'Error al conectar con Google' );
+    };
+  };
+
 };
