@@ -1,6 +1,6 @@
 import { Session } from "@supabase/supabase-js";
 
-export interface Register {
+export interface RegisterPayload {
   tenant_name: string,
   full_name: string,
   email: string,
@@ -8,7 +8,7 @@ export interface Register {
   password: string,
 };
 
-export interface CompleteOnboarding {
+export interface OnboardingPayload {
   full_name: string,
   tenant_name: string,
 };
