@@ -39,45 +39,45 @@ export default class LoginPage {
 
 
 
-  async onSubmit() {
-    if (this.loginForm.invalid) {
+  async onSubmit(): Promise<void> {
+    if ( this.loginForm.invalid ) {
       this.loginForm.markAllAsTouched();
       return;
     }
 
-    this.isLoading.set(true);
-    this.errorMessage.set(null);
+    this.isLoading.set( true );
+    this.errorMessage.set( null );
 
-    const loginData = this.loginForm.getRawValue();
-    console.log('Datos listos para enviar a Supabase:', loginData);
+    const { email, password } = this.loginForm.getRawValue();
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await this.authService.loginWithPassword( email!, password! );
 
-      this.isLoading.set(false);
+      this.isLoading.set( false );
 
-      this.router.navigate(['/']);
-    } catch (error) {
-      this.isLoading.set(false);
-      this.errorMessage.set('Credenciales incorrectas. Inténtalo de nuevo.');
+      this.router.navigate([ '/admin' ]);
+    } catch (error: any) {
+      this.isLoading.set( false );
+      this.errorMessage.set(
+        error?.message === 'Invalid login credentials'
+          ? 'Correo o contraseña incorrectos. Inténtalo de nuevo.'
+          : error?.message || 'Ocurrió un error al iniciar sesión.'
+      );
     }
-  };
+  }
 
 
 
-  async onGoogleLogin() {
+  async onGoogleLogin(): Promise<void> {
     this.isLoading.set( true );
     this.errorMessage.set( null );
 
     try {
-      await this.authService.loginWithGoogle();
-
-      this.isLoading.set( false );
-      this.router.navigate(['/admin'])
+      await this.authService.loginWithGoogle( '/auth/login' );
     } catch (error: any) {
       this.isLoading.set( false );
       this.errorMessage.set( error.message || 'Error al conectar con Google' );
-    };
-  };
+    }
+  }
 
 };

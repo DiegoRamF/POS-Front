@@ -57,6 +57,21 @@ export class AuthService {
 
 
 
+  async loginWithPassword( email: string, password: string ): Promise<Session> {
+    const { data, error } = await this.supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    return data.session;
+  };
+
+
+
   async loginWithGoogle( redirectToRoute: string = '/auth/login' ): Promise<void> {
     const provider: OAuthProvider = 'google';
     const { error } = await this.supabase.auth.signInWithOAuth({
