@@ -13,6 +13,10 @@ export const authRoutes: Routes = [
     path: 'select-role',
     loadComponent: () => import( './select-role/select-role' ),
   },
+  {
+    path: 'complete-onboarding',
+    loadComponent: () => import( './complete-onboarding/complete-onboarding' ),
+  }
 ];
 
 export default authRoutes;

@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 
 import { AuthValidators } from '../utils/auth-utils';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'register',
@@ -11,6 +12,7 @@ import { AuthValidators } from '../utils/auth-utils';
 })
 export default class RegisterPage {
 
+  private authService = inject( AuthService )
   private fb = inject( FormBuilder );
   private router = inject( Router );
 
@@ -77,7 +79,9 @@ export default class RegisterPage {
     this.errorMessage.set( null );
 
     try {
-
+      await this.authService.loginWithGoogle();
+      this.isLoading.set(false);
+      this.router.navigate([ '/admin' ])
     } catch (error: any) {
       this.isLoading.set( false );
       this.errorMessage.set( error.message || 'Error al conectar con Google' );
