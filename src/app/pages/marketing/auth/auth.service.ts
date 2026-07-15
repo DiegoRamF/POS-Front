@@ -57,17 +57,21 @@ export class AuthService {
 
 
 
-  async loginWithGoogle(): Promise<void> {
+  async loginWithGoogle( redirectToRoute: string = '/auth/login' ): Promise<void> {
     const provider: OAuthProvider = 'google';
     const { error } = await this.supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}/auth/login`,
-        queryParams: { prompt: 'select_account' },
+        redirectTo: `${window.location.origin}${redirectToRoute}`,
+        queryParams: {
+          prompt: 'select_account',
+        },
       },
     });
     if (error) throw error;
   }
+
+
 
   completeOnboarding(data: OnboardingPayload): Observable<Tenant> {
     return this.http

@@ -4,6 +4,7 @@ import { RouterLink, Router } from '@angular/router';
 
 import { AuthValidators } from '../utils/auth-utils';
 import { AuthService } from '../auth.service';
+import { RegisterPayload } from '../auth.interfaces';
 
 @Component({
   selector: 'register',
@@ -18,7 +19,6 @@ export default class RegisterPage {
 
   isLoading = signal( false );
   errorMessage = signal<string | null>( null );
-  successMessage = signal<string | null>( null );
   showPassword = signal( false );
 
   registerForm = this.fb.nonNullable.group({
@@ -47,45 +47,53 @@ export default class RegisterPage {
 
 
 
-  async onSubmit() {
+  onSubmit(): void {
     if ( this.registerForm.invalid ) {
       this.registerForm.markAllAsTouched();
       return;
+    }
+
+    this.isLoading.set( true );
+    this.errorMessage.set( null );
+
+    const { confirmPassword, ...formValues } = this.registerForm.getRawValue();
+
+    const registerData: RegisterPayload = {
+      ...formValues,
+      phone: Number( formValues.phone ),
     };
 
+    this.authService.register(registerData).subscribe({
+      next: () => {
+        this.isLoading.set( false );
+        this.router.navigate([ '/auth/login' ]);
+      },
+      error: (err: unknown) => {
+        this.isLoading.set( false );
+        const msg = (err as any)?.error?.message;
+
+        if (Array.isArray( msg )) {
+          this.errorMessage.set( msg[0] );
+        } else {
+          this.errorMessage.set( msg || 'Ocurrió un error al crear la cuenta. Inténtalo nuevamente.' );
+        }
+      }
+    });
+  }
+
+
+
+  async onGoogleLogin(): Promise<void> {
     this.isLoading.set( true );
     this.errorMessage.set( null );
 
-    const { confirmPassword, ...registerData } = this.registerForm.getRawValue();
-
-    console.log( 'Datos para enviar: ', registerData );
-
     try {
-      await new Promise( ( resolve ) => setTimeout( resolve, 2000) )
+      await this.authService.loginWithGoogle('/auth/complete-onboarding');
 
-      this.isLoading.set( false );
-
-      this.router.navigate([ 'auth/login' ]);
-    } catch (error) {
-      this.isLoading.set( false );
-      this.errorMessage.set( 'Ocurrio un error' )
-    }
-  };
-
-
-
-  async onGoogleLogin() {
-    this.isLoading.set( true );
-    this.errorMessage.set( null );
-
-    try {
-      await this.authService.loginWithGoogle();
-      this.isLoading.set(false);
-      this.router.navigate([ '/admin' ])
     } catch (error: any) {
       this.isLoading.set( false );
       this.errorMessage.set( error.message || 'Error al conectar con Google' );
-    };
-  };
+    }
+  }
 
 };
