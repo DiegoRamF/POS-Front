@@ -1,3 +1,5 @@
+import { Session } from "@supabase/supabase-js";
+
 export interface Register {
   tenant_name: string,
   full_name: string,
@@ -13,5 +15,17 @@ export interface CompleteOnboarding {
 
 export interface Tenant {
   id: string,
-  name: string
+  name: string,
+};
+
+export interface OnboardingResponse {
+  tenant: Tenant;
+}
+
+export type OAuthProvider = 'google';
+
+export interface AuthState {
+  session: Session | null,
+  selectedTenantId: string | null,
+  isLoading: boolean,
 };
